@@ -3,8 +3,8 @@ import { Text, View } from "react-native";
 export default function Index() {
   return (
     <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-xl font-bold text-red-500">
-        Welcome to my application
+      <Text className="text-5xl text-center text-primary font-quicksand-bold">
+        Welcome to my React Native APP!
       </Text>
     </View>
   );
