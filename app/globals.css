@@ -102,7 +102,7 @@
   }
 
   .base-bold {
-    @apply text-lg font-quicksand-bold !important;
+    @apply text-lg font-quicksand-bold;
   }
 
   .base-semibold {
@@ -110,7 +110,7 @@
   }
 
   .base-regular {
-    @apply text-lg font-quicksand;
+    @apply text-lg font-quicksand-regular;
   }
 
   .paragraph-bold {
@@ -130,7 +130,7 @@
   }
 
   .body-regular {
-    @apply text-sm font-quicksand;
+    @apply text-sm font-quicksand-regular;
   }
 
   .small-bold {
