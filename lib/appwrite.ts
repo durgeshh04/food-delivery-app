@@ -1,11 +1,25 @@
 import { CreateUserPrams, SignInParams } from "@/type";
-import { Account, Avatars, Client, ID, TablesDB } from "appwrite";
+import {
+  Account,
+  Avatars,
+  Client,
+  ID,
+  Query,
+  Storage,
+  TablesDB,
+} from "appwrite";
 
 export const appwriteConfig = {
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!,
   databaseId: process.env.EXPO_PUBLIC_DATABASE_ID!,
+  bucketId: process.env.EXPO_PUBLIC_BUCKET_ID!,
   userTableId: process.env.EXPO_PUBLIC_USER_TABLE_ID!,
+  categoriesTableId: process.env.EXPO_PUBLIC_CATEGORIES_TABLE_ID!,
+  menuTableId: process.env.EXPO_PUBLIC_MENU_TABLE_ID!,
+  customizationsTableId: process.env.EXPO_PUBLIC_CUSTOMIZATION_TABLE_ID!,
+  menuCustomizationsTableId:
+    process.env.EXPO_PUBLIC_MENU_CUSTOMIZATION_TABLE_ID!,
 };
 
 const client = new Client()
@@ -14,6 +28,7 @@ const client = new Client()
 
 export const account = new Account(client);
 export const tablesDB = new TablesDB(client);
+export const storage = new Storage(client);
 const avatars = new Avatars(client);
 
 export const createUser = async ({
@@ -61,8 +76,6 @@ export const createUser = async ({
 export const signIn = async ({ email, password }: SignInParams) => {
   return await account.createEmailPasswordSession(email, password);
 };
-
-import { Query } from "appwrite";
 
 export const getCurrentUser = async () => {
   try {
