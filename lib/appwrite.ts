@@ -62,6 +62,8 @@ export const signIn = async ({ email, password }: SignInParams) => {
   return await account.createEmailPasswordSession(email, password);
 };
 
+import { Query } from "appwrite";
+
 export const getCurrentUser = async () => {
   try {
     const currAccount = await account.get();
@@ -70,17 +72,17 @@ export const getCurrentUser = async () => {
     const userRows = await tablesDB.listRows(
       appwriteConfig.databaseId,
       appwriteConfig.userTableId,
-      [`userId="${currAccount.$id}"`],
+      [Query.equal("userId", currAccount.$id)],
     );
+
+    const profile = userRows.rows[0] ?? null;
 
     return {
       account: currAccount,
-      profile: userRows.rows[0] ?? null,
+      profile,
     };
   } catch (error: any) {
-    // Not logged in → return null
     if (error.code === 401) return null;
-
     console.log("Get current user error:", error);
     throw error;
   }
